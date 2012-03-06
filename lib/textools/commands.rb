@@ -10,7 +10,7 @@ module Textools
     method_options :working_directory => '.'
     def create(name)
       # workaround as default options does not work
-      parent_directory = options[:working_directory] || '.'
+      parent_directory = options[:working_directory] || ''
 
       directory = File.join(parent_directory,name)
 
@@ -31,7 +31,7 @@ module Textools
       template("content.tex.erb",File.join(directory,"content.tex"))
 
       # create containing directory
-      inside(File.join(parent_directory,name), :verbose => true) do |folder|
+      inside(File.join(parent_directory,name)) do |folder|
 
         # initialize git repository
         run("git init")
