@@ -14,17 +14,14 @@ module Textools
         App.new([],{'working_directory' => dir}).create(project)
 
         assert Dir.exists?(File.join(dir,project))
-        assert File.exists?(File.join(dir,project,'.gitignore')), "no .gitignore"
-        assert File.exists?(File.join(dir,project,'README')), "no README"
-        assert File.exists?(File.join(dir,project,"#{project}.tex")), "no project tex file"
-        assert File.exists?(File.join(dir,project,'header.tex')), "no header file"
-        assert File.exists?(File.join(dir,project,'content.tex')), "no content file"
-        assert File.exists?(File.join(dir,project,'clean.bat')), "no clean.bat file"
-        assert !File.exists?(File.join(dir,project,'clean.rb')), "no clean.rb file"
-        assert File.exists?(File.join(dir,project,'clean.sh')), "no clean.sh file"
-        assert Dir.exists?(File.join(dir,project,'images')), "no images folder"
-        assert Dir.exists?(File.join(dir,project,'includes')), "no includes folder"
-        assert Dir.exists?(File.join(dir,project,'.git')), "no git folder"
+        %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex}.each do |file|
+          assert File.exists?(File.join(dir,project,file)), "no #{file} file"
+        end
+
+        %w{images includes .git}.each do|folder|
+          assert Dir.exists?(File.join(dir,project,folder)), "no #{folder} folder"
+        end
+
       end
     end
 
