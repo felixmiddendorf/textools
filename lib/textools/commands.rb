@@ -7,7 +7,7 @@ module Textools
     include Thor::Actions
 
     desc 'create PROJECT_NAME', 'create a new LaTeX project'
-    method_options :working_directory => :string, :texlipse => :boolean
+    method_options %w{working_directory -wd} => :string, %w{texlipse -t} => :boolean, %w{texniccenter -tc} => :boolean
     def create(name)
       # workaround as default options does not work
       parent_directory = options[:working_directory]
@@ -37,6 +37,9 @@ module Textools
         @name = name
         template(".project.erb",File.join(directory,".project"))
         template(".texlipse.erb",File.join(directory,".texlipse"))
+      elsif options.texniccenter?
+        @name = name
+        template("name.tcp.erb",File.join(directory,"#{name}.tcp"))
       end
 
       # create containing directory
