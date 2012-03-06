@@ -18,13 +18,17 @@ module Textools
       empty_directory(directory)
 
       # copy required files
-      ['.gitignore', 'clean.bat', 'clean.sh'].each do |file|
+      ['.gitignore', 'clean.bat', 'clean.sh', "README"].each do |file|
         copy_file file,File.join(directory,file)
       end
 
       # directories
       empty_directory(File.join(directory, "images"))
       empty_directory(File.join(directory, "includes"))
+
+      template("main.tex.erb",File.join(directory,"#{name}.tex"))
+      template("header.tex.erb",File.join(directory,"header.tex"))
+      template("content.tex.erb",File.join(directory,"content.tex"))
 
       # create containing directory
       inside(File.join(parent_directory,name), :verbose => true) do |folder|

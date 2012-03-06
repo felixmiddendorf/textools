@@ -15,6 +15,10 @@ module Textools
 
         assert Dir.exists?(File.join(dir,project))
         assert File.exists?(File.join(dir,project,'.gitignore')), "no .gitignore"
+        assert File.exists?(File.join(dir,project,'README')), "no README"
+        assert File.exists?(File.join(dir,project,"#{project}.tex")), "no project tex file"
+        assert File.exists?(File.join(dir,project,'header.tex')), "no header file"
+        assert File.exists?(File.join(dir,project,'content.tex')), "no content file"
         assert File.exists?(File.join(dir,project,'clean.bat')), "no clean.bat file"
         assert !File.exists?(File.join(dir,project,'clean.rb')), "no clean.rb file"
         assert File.exists?(File.join(dir,project,'clean.sh')), "no clean.sh file"
@@ -27,13 +31,11 @@ module Textools
     def test_clean
 
       Dir.mktmpdir do |dir|
-
         File.open(File.join(dir,"test.pdf"), "w") do |f|
           f << "asdf"
         end
 
         App.new([],{'working_directory' => dir}).clean
-
         assert !File.exists?(File.join(dir,"test.pdf")),"test.pdf should be deleted"
       end
     end
