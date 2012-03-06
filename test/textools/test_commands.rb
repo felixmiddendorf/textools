@@ -76,6 +76,10 @@ module Textools
       end
     end
 
+    def test_version
+      assert App.new.respond_to?(:version)
+    end
+
   end
 
 end

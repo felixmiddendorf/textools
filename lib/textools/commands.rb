@@ -39,7 +39,7 @@ module Textools
         template(".texlipse.erb",File.join(directory,".texlipse"))
       elsif options.texniccenter?
         @name = name
-        template("name.tcp.erb",File.join(directory,"#{name}.tcp"))
+        template("main.tcp.erb",File.join(directory,"#{name}.tcp"))
       end
 
       # create containing directory
@@ -65,6 +65,11 @@ module Textools
           remove_file file
         end
       end
+    end
+
+    desc 'version','prints the version of textools'
+    def version
+      say "Textools v#{Textools::VERSION}"
     end
 
     private
