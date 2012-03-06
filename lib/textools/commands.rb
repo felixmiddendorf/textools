@@ -7,12 +7,15 @@ module Textools
     include Thor::Actions
 
     desc 'create PROJECT_NAME', 'create a new LaTeX project'
-    method_options :working_directory => '.'
+    method_option :working_directory => :string
     def create(name)
       # workaround as default options does not work
-      parent_directory = options[:working_directory] || ''
-
-      directory = File.join(parent_directory,name)
+      parent_directory = options[:working_directory]
+      if parent_directory
+        directory = File.join(parent_directory,name)
+      else
+        directory = name
+      end
 
       # create project directory
       empty_directory(directory)
@@ -31,7 +34,7 @@ module Textools
       template("content.tex.erb",File.join(directory,"content.tex"))
 
       # create containing directory
-      inside(File.join(parent_directory,name)) do |folder|
+      inside(directory, :verbose => true) do |folder|
 
         # initialize git repository
         run("git init")
