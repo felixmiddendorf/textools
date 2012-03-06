@@ -1,5 +1,6 @@
 require 'thor'
 require 'thor/group'
+require "fileutils"
 
 module Textools
 
@@ -59,8 +60,8 @@ module Textools
       # workaround as default options does not work
       parent_directory = options[:working_directory] || '.'
 
-      require "fileutils"
-      %w{*.aux *.bbl *.log *.pdf *.pgf *.dvi *.synctex* *.toc *.blg}.each do |pattern|
+      %w{*.aux *.bbl *.blg *.lof *.log *.lot *.out *.pgf *.dvi *.synctex*
+         *.tdo *.toc *.tps *.lol *.bak *.pdf}.each do |pattern|
         Dir.glob(File.join(parent_directory,pattern)).each do |file|
           remove_file file
         end
