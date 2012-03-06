@@ -7,8 +7,7 @@ module Textools
     include Thor::Actions
 
     desc 'create PROJECT_NAME', 'create a new LaTeX project'
-    method_option :working_directory => :string
-    method_option :texlipse => :boolean
+    method_options :working_directory => :string, :texlipse => :boolean
     def create(name)
       # workaround as default options does not work
       parent_directory = options[:working_directory]
