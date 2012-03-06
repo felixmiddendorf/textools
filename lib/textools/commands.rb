@@ -8,6 +8,7 @@ module Textools
 
     desc 'create PROJECT_NAME', 'create a new LaTeX project'
     method_option :working_directory => :string
+    method_option :texlipse => :boolean
     def create(name)
       # workaround as default options does not work
       parent_directory = options[:working_directory]
@@ -32,6 +33,12 @@ module Textools
       template("main.tex.erb",File.join(directory,"#{name}.tex"))
       template("header.tex.erb",File.join(directory,"header.tex"))
       template("content.tex.erb",File.join(directory,"content.tex"))
+
+      if options.texlipse?
+        @name = name
+        template(".project.erb",File.join(directory,".project"))
+        template(".texlipse.erb",File.join(directory,".texlipse"))
+      end
 
       # create containing directory
       inside(directory, :verbose => true) do |folder|
