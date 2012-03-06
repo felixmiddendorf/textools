@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Simon Harrer"]
   s.email       = ["simon.harrer@gmail.com"]
   s.homepage    = "https://github.com/simonharrer/textools"
-  s.summary     = %q{Command Line Tools for Generating and Maintaining LaTeX projects}
+  s.summary     = %q{Command Line Tools for Generating and Maintaining LaTeX Projects.}
   s.description = s.summary
 
   s.rubyforge_project = "textools"
