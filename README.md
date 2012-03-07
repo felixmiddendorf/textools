@@ -2,7 +2,7 @@
 
 ## Installation
 
-    $> gem install textools
+    $ gem install textools
 
 ## Usage
 
@@ -24,19 +24,19 @@ Creating a new LaTeX project works like this:
     Initialized empty Git repository in c:/dev/tmp/test/.git/
              run    git add . from "./test"
 
-For creating the texniccenter project file, too:
+Add the `--texniccenter` flag to create a [TeXnicCenter](http://www.texniccenter.org/) project file:
 
     $ textools create test --texniccenter
     $ textools create test -tc # short version
 
-For creating the texlipse project files, too:
+Add the `--texlipse` flag to create [TeXlipse](http://texlipse.sourceforge.net/) project files:
 
     $ textools create test --texlipse
     $ textools create test -t # short version
 
-To specific the working directory explicitly:
+Use the `--working_directory` flag to explicitly specify the working directory:
 
-    $ textools create test --working_directory="/tmp" # creates /tmp/muh as the project directory
+    $ textools create test --working_directory="/tmp" # creates /tmp as the project directory
     $ textools create test -wd="/tmp" # short version
 
 Inside a LaTeX project, you can remove any temporary files like this:
