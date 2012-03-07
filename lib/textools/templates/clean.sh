@@ -1,9 +1,18 @@
+#!/bin/sh
+rm *.~
 rm *.aux
 rm *.bbl
+rm *.blg
+rm *.lof
 rm *.log
-rm *.pdf
+rm *.lot
+rm *.out
 rm *.pgf
 rm *.dvi
 rm *.synctex*
+rm *.tdo
 rm *.toc
-rm *.blg
+rm *.tps
+rm *.lol
+rm *.bak
+rm *.pdf
