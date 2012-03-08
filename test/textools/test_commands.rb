@@ -11,9 +11,9 @@ module Textools
 
         project = 'test'
 
-        App.new([],{'working_directory' => dir}).create(project)
+        App.new([],{:working_directory => dir}).create(project)
 
-        assert Dir.exists?(File.join(dir,project))
+        assert Dir.exists?(File.join(dir,project)), "no project directory named #{project}"
         %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex}.each do |file|
           assert File.exists?(File.join(dir,project,file)), "no #{file} file"
         end
@@ -30,9 +30,9 @@ module Textools
 
         project = 'test'
 
-        App.new([],{'working_directory' => dir, 'texlipse' => true}).create(project)
+        App.new([],{:working_directory => dir, 'texlipse' => true}).create(project)
 
-        assert Dir.exists?(File.join(dir,project))
+        assert Dir.exists?(File.join(dir,project)), "no project directory named #{project}"
         %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex .project .texlipse}.each do |file|
           assert File.exists?(File.join(dir,project,file)), "no #{file} file"
         end
@@ -49,9 +49,9 @@ module Textools
 
         project = 'test'
 
-        App.new([],{'working_directory' => dir, 'texniccenter' => true}).create(project)
+        App.new([],{:working_directory => dir, 'texniccenter' => true}).create(project)
 
-        assert Dir.exists?(File.join(dir,project))
+        assert Dir.exists?(File.join(dir,project)), "no project directory named #{project}"
         %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex #{project}.tcp}.each do |file|
           assert File.exists?(File.join(dir,project,file)), "no #{file} file"
         end
@@ -71,7 +71,7 @@ module Textools
           f << "asdf"
         end
 
-        App.new([],{'working_directory' => dir}).clean
+        App.new([],{:working_directory => dir}).clean
         assert !File.exists?(File.join(dir,"test.pdf")),"test.pdf should be deleted"
       end
     end
