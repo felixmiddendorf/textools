@@ -31,6 +31,7 @@ module Textools
       empty_directory(File.join(directory, "includes"))
 
       template("main.tex.erb",File.join(directory,"#{name}.tex"))
+      template("main.bib.erb",File.join(directory,"#{name}.bib"))
       template("header.tex.erb",File.join(directory,"header.tex"))
       template("content.tex.erb",File.join(directory,"content.tex"))
 

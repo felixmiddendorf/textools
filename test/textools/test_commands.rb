@@ -14,7 +14,7 @@ module Textools
         App.new([],{:working_directory => dir}).create(project)
 
         assert Dir.exists?(File.join(dir,project)), "no project directory named #{project}"
-        %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex}.each do |file|
+        %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex #{project}.bib}.each do |file|
           assert File.exists?(File.join(dir,project,file)), "no #{file} file"
         end
 
@@ -33,7 +33,7 @@ module Textools
         App.new([],{:working_directory => dir, 'texlipse' => true}).create(project)
 
         assert Dir.exists?(File.join(dir,project)), "no project directory named #{project}"
-        %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex .project .texlipse}.each do |file|
+        %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex #{project}.bib .project .texlipse}.each do |file|
           assert File.exists?(File.join(dir,project,file)), "no #{file} file"
         end
 
@@ -52,7 +52,7 @@ module Textools
         App.new([],{:working_directory => dir, 'texniccenter' => true}).create(project)
 
         assert Dir.exists?(File.join(dir,project)), "no project directory named #{project}"
-        %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex #{project}.tcp}.each do |file|
+        %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex #{project}.bib #{project}.tcp}.each do |file|
           assert File.exists?(File.join(dir,project,file)), "no #{file} file"
         end
 
