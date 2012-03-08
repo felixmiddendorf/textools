@@ -1,5 +1,10 @@
 # Textools
 
+## Status
+
++[![Build Status](https://secure.travis-ci.org/simonharrer/textools.png)](http://travis-ci.org/simonharrer/textools)
++[![Dependency Status](https://gemnasium.com/simonharrer/textools.png)](https://gemnasium.com/simonharrer/textools)
+
 ## Installation
 
     $> gem install textools
