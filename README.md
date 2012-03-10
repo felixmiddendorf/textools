@@ -37,9 +37,9 @@ Add the `--texlipse` flag to create [TeXlipse](http://texlipse.sourceforge.net/)
     $ textools create test --texlipse
     $ textools create test -t # short version
 
-Use the `--working_directory` flag to explicitly specify the working directory:
+Use the `--working-directory` flag to explicitly specify the working directory:
 
-    $ textools create test --working_directory="/tmp" # creates /tmp as the project directory
+    $ textools create test --working-directory="/tmp/test" # creates /tmp as the project directory
     $ textools create test -wd="/tmp" # short version
 
 Inside a LaTeX project, you can remove any temporary files like this:
