@@ -11,7 +11,7 @@ module Textools
     method_options %w{working_directory -wd} => :string, %w{texlipse -t} => :boolean, %w{texniccenter -tc} => :boolean
     def create(name)
       # workaround as default options does not work
-      parent_directory = options[:working_directory]
+      parent_directory = options['working_directory']
       if parent_directory
         directory = File.join(parent_directory,name)
       else
@@ -31,6 +31,7 @@ module Textools
       empty_directory(File.join(directory, "includes"))
 
       template("main.tex.erb",File.join(directory,"#{name}.tex"))
+      template("main.bib.erb",File.join(directory,"#{name}.bib"))
       template("header.tex.erb",File.join(directory,"header.tex"))
       template("content.tex.erb",File.join(directory,"content.tex"))
 
