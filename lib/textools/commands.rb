@@ -61,7 +61,7 @@ module Textools
       # workaround as default options does not work
       parent_directory = options[:working_directory] || '.'
 
-      %w{*.aux *.bbl *.blg *.lof *.log *.lot *.out *.pgf *.dvi *.synctex*
+      %w{*~ *.aux *.bbl *.blg *.lof *.log *.lot *.out *.pgf *.dvi *.synctex*
          *.tdo *.toc *.tps *.lol *.bak *.pdf}.each do |pattern|
         Dir.glob(File.join(parent_directory,pattern)).each do |file|
           remove_file file
