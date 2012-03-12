@@ -37,7 +37,7 @@ module Textools
           assert File.exists?(File.join(dir,project,file)), "no #{file} file"
         end
 
-        %w{images includes .git}.each do|folder|
+        %w{images includes tmp .git}.each do|folder|
           assert Dir.exists?(File.join(dir,project,folder)), "no #{folder} folder"
         end
 

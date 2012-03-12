@@ -39,6 +39,7 @@ module Textools
         @name = name
         template(".project.erb",File.join(directory,".project"))
         template(".texlipse.erb",File.join(directory,".texlipse"))
+        empty_directory(File.join(directory,"tmp"))
       elsif options.texniccenter?
         @name = name
         template("main.tcp.erb",File.join(directory,"#{name}.tcp"))
