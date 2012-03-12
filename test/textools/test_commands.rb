@@ -13,15 +13,10 @@ module Textools
 
         App.new([],{:working_directory => dir}).create(project)
 
-        assert Dir.exists?(File.join(dir,project)), "no project directory named #{project}"
-        %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex #{project}.bib}.each do |file|
-          assert File.exists?(File.join(dir,project,file)), "no #{file} file"
-        end
+        project_folder = File.join(dir, project)
 
-        %w{images includes .git}.each do|folder|
-          assert Dir.exists?(File.join(dir,project,folder)), "no #{folder} folder"
-        end
-
+        # normal files
+        assert_project_files project, project_folder
       end
     end
 
@@ -32,15 +27,14 @@ module Textools
 
         App.new([],{:working_directory => dir, 'texlipse' => true}).create(project)
 
-        assert Dir.exists?(File.join(dir,project)), "no project directory named #{project}"
-        %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex #{project}.bib .project .texlipse}.each do |file|
-          assert File.exists?(File.join(dir,project,file)), "no #{file} file"
-        end
+        project_folder = File.join(dir, project)
 
-        %w{images includes tmp .git}.each do|folder|
-          assert Dir.exists?(File.join(dir,project,folder)), "no #{folder} folder"
-        end
+        # normal files
+        assert_project_files project, project_folder
 
+        # additional tests
+        assert_existence_of_files %w{.project .texlipse}, project_folder
+        assert_existence_of_folders %w{tmp}, project_folder
       end
     end
 
@@ -51,21 +45,18 @@ module Textools
 
         App.new([],{:working_directory => dir, 'texniccenter' => true}).create(project)
 
-        assert Dir.exists?(File.join(dir,project)), "no project directory named #{project}"
-        %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex #{project}.bib #{project}.tcp}.each do |file|
-          assert File.exists?(File.join(dir,project,file)), "no #{file} file"
-        end
+        project_folder = File.join(dir, project)
 
-        %w{images includes .git}.each do|folder|
-          assert Dir.exists?(File.join(dir,project,folder)), "no #{folder} folder"
-        end
+        # normal files
+        assert_project_files project, project_folder
 
+        # additional files
+        assert_existence_of_files %W{#{project}.tcp}, project_folder
       end
     end
 
 
     def test_clean
-
       Dir.mktmpdir do |dir|
         File.open(File.join(dir,"test.pdf"), "w") do |f|
           f << "asdf"
@@ -78,6 +69,25 @@ module Textools
 
     def test_version
       assert App.new.respond_to?(:version)
+    end
+
+    private
+
+    def assert_project_files(project, project_folder)
+      assert_existence_of_files %W{.gitignore README header.tex content.tex clean.bat clean.sh #{project}.tex #{project}.bib}, project_folder
+      assert_existence_of_folders %w{. images includes .git}, project_folder
+    end
+
+    def assert_existence_of_files(files, folder)
+      files.each do |file|
+        assert File.exists?(File.join(folder,file)), "no #{file} file in #{folder}"
+      end
+    end
+
+    def assert_existence_of_folders(folders, parent)
+      folders.each do |folder|
+        assert Dir.exists?(File.join(parent,folder)), "no #{folder} folder in #{parent}"
+      end
     end
 
   end
