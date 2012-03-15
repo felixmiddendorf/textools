@@ -39,7 +39,7 @@ Add the `--texlipse` flag to create [TeXlipse](http://texlipse.sourceforge.net/)
 
 Use the `--working-directory` flag to explicitly specify the working directory:
 
-    $ textools create test --working-directory="/tmp/test" # creates /tmp as the project directory
+    $ textools create test --working-directory="/tmp" # creates /tmp/test as the project directory
     $ textools create test -wd="/tmp" # short version
 
 Use the `--template PATH_TO_RUBY_FILE` parameter to specifiy additional tasks to be executed during project creation:
