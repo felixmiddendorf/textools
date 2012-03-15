@@ -60,6 +60,11 @@ The version number can be printed like this:
     $ textools version
     Textools v0.0.2
 
+## Contributors
+
+* [Simon Harrer](https://github.com/simonharrer)
+* [Felix Middendorf](https://github.com/felixmiddendorf)
+
 ## URLs
 
 * https://github.com/simonharrer/textools
