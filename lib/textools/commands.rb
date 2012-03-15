@@ -11,7 +11,7 @@ module Textools
     method_options %w{working_directory -wd} => :string, %w{texlipse -t} => :boolean, %w{texniccenter -tc} => :boolean, %w{template -m} => :string
     def create(name)
       # workaround as default options does not work
-      parent_directory = options['working_directory']
+      parent_directory = options[:working_directory]
       if parent_directory
         directory = File.join(parent_directory,name)
       else
