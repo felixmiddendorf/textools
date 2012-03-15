@@ -18,6 +18,9 @@ module Textools
         directory = name
       end
 
+      @directory = directory
+      @name = name
+
       # create project directory
       empty_directory(directory)
 
@@ -52,10 +55,10 @@ module Textools
         run("git init")
         # add all files to the staging area
         run("git add .")
+      end
 
-        if options[:template]
-         apply options[:template]
-        end
+      if options[:template]
+        apply options[:template]
       end
 
     end
