@@ -60,6 +60,15 @@ The version number can be printed like this:
     $ textools version
     Textools v0.0.2
 
+## Development
+
+You need Ruby 1.9.3 and Bundler.
+
+    git clone git@github.com:simonharrer/textools
+    cd textools
+    bundle # install dependencies
+    rake # execute tests
+
 ## Contributors
 
 * [Simon Harrer](https://github.com/simonharrer)
