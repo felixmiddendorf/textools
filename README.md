@@ -45,7 +45,7 @@ Use the `--working-directory` flag to explicitly specify the working directory:
 Use the `--template PATH_TO_RUBY_FILE` parameter to specifiy additional [tasks](https://github.com/wycats/thor/wiki/Actions) to be executed during project creation:
 
     custom_template.rb:
-        empty_directory "example_dir"
+        empty_directory File.join(@directory,"example_dir")
 
     $ textools create test --template="custom_template.rb" # executes custom_template.rb adding test/example_dir
     $ textools create test -m="custom_template.rb" # short version

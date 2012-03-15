@@ -26,7 +26,7 @@ module Textools
         custom_template = File.join(dir,"template.rb")
         additional_directory = "example_dir"
         File.open(custom_template,"w") do |f|
-          f << "empty_directory '#{additional_directory}'"
+          f << "empty_directory File.join(@directory,'#{additional_directory}')"
         end
 
         project = 'test'
