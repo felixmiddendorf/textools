@@ -42,6 +42,14 @@ Use the `--working-directory` flag to explicitly specify the working directory:
     $ textools create test --working-directory="/tmp/test" # creates /tmp as the project directory
     $ textools create test -wd="/tmp" # short version
 
+Use the `--template PATH_TO_RUBY_FILE` parameter to specifiy additional tasks to be executed during project creation:
+
+    custom_template.rb:
+        empty_directory "example_dir"
+
+    $ textools create test --template="custom_template.rb" # executes custom_template.rb adding test/example_dir
+    $ textools create test -m="custom_template.rb" # short version
+
 Inside a LaTeX project, you can remove any temporary files like this:
 
     $ textools clean

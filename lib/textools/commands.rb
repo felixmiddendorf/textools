@@ -8,7 +8,7 @@ module Textools
     include Thor::Actions
 
     desc 'create PROJECT_NAME', 'create a new LaTeX project'
-    method_options %w{working_directory -wd} => :string, %w{texlipse -t} => :boolean, %w{texniccenter -tc} => :boolean
+    method_options %w{working_directory -wd} => :string, %w{texlipse -t} => :boolean, %w{texniccenter -tc} => :boolean, %w{template -m} => :string
     def create(name)
       # workaround as default options does not work
       parent_directory = options['working_directory']
@@ -53,7 +53,11 @@ module Textools
         # add all files to the staging area
         run("git add .")
 
+        if options[:template]
+         apply options[:template]
+        end
       end
+
     end
 
     desc 'clean','cleans the current LaTeX project'

@@ -20,6 +20,28 @@ module Textools
       end
     end
 
+    def test_create_custom_template
+      Dir.mktmpdir do |dir|
+
+        custom_template = File.join(dir,"template.rb")
+        additional_directory = "example_dir"
+        File.open(custom_template,"w") do |f|
+          f << "empty_directory '#{additional_directory}'"
+        end
+
+        project = 'test'
+
+        App.new([],{:working_directory => dir, :template => custom_template}).create(project)
+
+        project_folder = File.join(dir, project)
+
+        # normal files
+        assert_project_files project, project_folder
+
+        assert_existence_of_folders %W{#{additional_directory}}, project_folder
+      end
+    end
+
     def test_create_texclipse
       Dir.mktmpdir do |dir|
 
